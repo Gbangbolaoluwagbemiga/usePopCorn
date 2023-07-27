@@ -385,7 +385,7 @@ EMPTY STAR
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0 2.5rem;
+    padding: 0 2rem;
     gap: 0.75rem;
     width: 100%;
   }
