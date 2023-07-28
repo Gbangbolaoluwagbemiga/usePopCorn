@@ -149,11 +149,7 @@ function WatchList() {
       {isOpen2 && (
         <>
           <WatchedSummary watched={watched} />
-          <ul className="list">
-            {watched.map(movie => (
-              <ListWatchedMovie movie={movie} key={movie.imdbID} />
-            ))}
-          </ul>
+          <WatchedMovie watched={watched} />
         </>
       )}
     </div>
@@ -187,6 +183,16 @@ function WatchedSummary({watched}) {
         </p>
       </div>
     </div>
+  );
+}
+
+function WatchedMovie({watched}) {
+  return (
+    <ul className="list">
+      {watched.map(movie => (
+        <ListWatchedMovie movie={movie} key={movie.imdbID} />
+      ))}
+    </ul>
   );
 }
 
