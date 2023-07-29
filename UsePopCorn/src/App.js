@@ -58,6 +58,25 @@ export default function App() {
   );
 }
 
+function NavBar({movies}) {
+  return (
+    <nav className="nav-bar">
+      <Logo />
+      <Search />
+      <Result movies={movies} />
+    </nav>
+  );
+}
+
+function Main({movies}) {
+  return (
+    <main className="main">
+      <ListBox movies={movies} />
+      <WatchList />
+    </main>
+  );
+}
+
 const average = arr =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
@@ -92,15 +111,6 @@ function Result({movies}) {
   );
 }
 
-function NavBar({movies}) {
-  return (
-    <nav className="nav-bar">
-      <Logo />
-      <Search />
-      <Result movies={movies} />
-    </nav>
-  );
-}
 // End of Navbar component
 
 // Main Component started
@@ -225,14 +235,5 @@ function ListWatchedMovie({movie}) {
         </p>
       </div>
     </li>
-  );
-}
-
-function Main({movies}) {
-  return (
-    <main className="main">
-      <ListBox movies={movies} />
-      <WatchList />
-    </main>
   );
 }
