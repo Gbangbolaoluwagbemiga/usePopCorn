@@ -5,8 +5,11 @@ const containerSyle = {
 };
 const starStyle = {
   display: 'flex',
-  alignItems: 'center',
   gap: '0.25rem',
+};
+const textStyle = {
+  lineHeight: '1',
+  margin: '0',
 };
 
 export default function StarRating() {
@@ -17,7 +20,7 @@ export default function StarRating() {
           <span key={i}>s{i + 1}</span>
         ))}
       </div>
-      <p>11</p>
+      <p style={textStyle}>11</p>
     </div>
   );
 }
