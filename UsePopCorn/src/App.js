@@ -61,6 +61,7 @@ export default function App() {
         <Box>
           <MovieList movies={movies} />
         </Box>
+
         {/* The list of watched movie */}
         <Box>
           <WatchedSummary watched={movies} />
