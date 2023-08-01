@@ -57,10 +57,11 @@ export default function App() {
       </NavBar>
 
       <Main>
+        {/* The lisit of movie */}
         <Box>
           <MovieList movies={movies} />
         </Box>
-
+        {/* The list of watched movie */}
         <Box>
           <WatchedSummary watched={movies} />
           <WatchedMovie watched={movies} />
@@ -160,27 +161,6 @@ function Box({children}) {
     </div>
   );
 }
-
-// WatchList component started
-
-// function WatchList() {
-//   const [watched, setWatched] = useState(tempWatchedData);
-//   const [isOpen2, setIsOpen2] = useState(true);
-
-//   return (
-//     <div className="box">
-//       <button className="btn-toggle" onClick={() => setIsOpen2(open => !open)}>
-//         {isOpen2 ? '–' : '+'}
-//       </button>
-//       {isOpen2 && (
-//         <>
-//           <WatchedSummary watched={watched} />
-//           <WatchedMovie watched={watched} />
-//         </>
-//       )}
-//     </div>
-//   );
-// }
 
 function WatchedSummary({watched}) {
   const avgImdbRating = average(watched.map(movie => movie.imdbRating));
