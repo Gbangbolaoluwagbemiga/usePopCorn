@@ -12,11 +12,11 @@ const textStyle = {
   margin: '0',
 };
 
-export default function StarRating() {
+export default function StarRating({maxRating}) {
   return (
     <div style={containerSyle}>
       <div style={starStyle}>
-        {Array.from({length: 10}, (_, i) => (
+        {Array.from({length: maxRating}, (_, i) => (
           <span key={i}>s{i + 1}</span>
         ))}
       </div>
