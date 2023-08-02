@@ -1,3 +1,5 @@
+import {useState} from 'react';
+
 const containerSyle = {
   display: 'flex',
   alignItems: 'center',
@@ -13,27 +15,28 @@ const textStyle = {
 };
 
 export default function StarRating({maxRating = 5}) {
+  const [rating, setRating] = useState(0);
   return (
     <div style={containerSyle}>
       <div style={starStyle}>
         {Array.from({length: maxRating}, (_, i) => (
-          <Star key={i} />
+          <Star key={i} onclick={() => setRating(1 + i)} />
         ))}
       </div>
-      <p style={textStyle}>11</p>
+      <p style={textStyle}>{rating || ''}</p>
     </div>
   );
 }
 
 const starIcon = {
-  height: '2.5rem',
-  width: '2.5rem',
+  height: '2.75rem',
+  width: '2.75rem',
   display: 'block',
   cursor: 'pointer',
 };
-function Star() {
+function Star({onclick}) {
   return (
-    <span style={starIcon}>
+    <span role="button" style={starIcon} onMouseEnter={onclick}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
