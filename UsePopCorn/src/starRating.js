@@ -20,7 +20,7 @@ export default function StarRating({maxRating = 5}) {
     <div style={containerSyle}>
       <div style={starStyle}>
         {Array.from({length: maxRating}, (_, i) => (
-          <Star key={i} onclick={() => setRating(1 + i)} />
+          <Star key={i} onRate={() => setRating(1 + i)} />
         ))}
       </div>
       <p style={textStyle}>{rating || ''}</p>
@@ -34,9 +34,9 @@ const starIcon = {
   display: 'block',
   cursor: 'pointer',
 };
-function Star({onclick}) {
+function Star({onRate}) {
   return (
-    <span role="button" style={starIcon} onMouseEnter={onclick}>
+    <span role="button" style={starIcon} onMouseEnter={onRate}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
