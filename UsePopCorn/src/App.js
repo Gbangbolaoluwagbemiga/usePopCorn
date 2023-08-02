@@ -57,7 +57,7 @@ export default function App() {
       </NavBar>
 
       <Main>
-        {/* The lisit of movie */}
+        {/* The list of movie */}
         <Box>
           <MovieList movies={movies} />
         </Box>
