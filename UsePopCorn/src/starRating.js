@@ -4,6 +4,7 @@ const containerSyle = {
   display: 'flex',
   alignItems: 'center',
   gap: '1.2rem',
+  maxWidth: '99%',
 };
 const starStyle = {
   display: 'flex',
@@ -37,8 +38,8 @@ export default function StarRating({maxRating = 5}) {
 }
 
 const starIcon = {
-  height: '2.75rem',
-  width: '2.75rem',
+  height: '1.75rem',
+  width: '1.75rem',
   display: 'block',
   cursor: 'pointer',
 };
