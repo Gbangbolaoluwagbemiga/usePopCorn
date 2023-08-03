@@ -15,6 +15,8 @@ export default function StarRating({
   maxRating = 5,
   color = '#fcc419',
   size = 1.25,
+  messages = [],
+  defaultRating = 0,
 }) {
   const textStyle = {
     lineHeight: '1',
@@ -23,7 +25,7 @@ export default function StarRating({
     fontSize: `${size}rem`,
   };
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultRating);
   const [hoverRating, setHoverRating] = useState(0);
 
   return (
@@ -41,7 +43,12 @@ export default function StarRating({
           />
         ))}
       </div>
-      <p style={textStyle}>{hoverRating || rating || ''}</p>
+
+      <p style={textStyle}>
+        {messages.length === maxRating
+          ? messages[hoverRating ? hoverRating - 1 : rating - 1]
+          : hoverRating || rating || ''}
+      </p>
     </div>
   );
 }
