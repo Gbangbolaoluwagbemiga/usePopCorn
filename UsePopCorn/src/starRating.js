@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {PropTypes} from 'prop-types';
 
 const containerSyle = {
   display: 'flex',
@@ -9,6 +10,14 @@ const containerSyle = {
 const starStyle = {
   display: 'flex',
   gap: '0.25rem',
+};
+
+StarRating.propTypes = {
+  maxRating: PropTypes.number,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  messages: PropTypes.array,
+  defaultRating: PropTypes.number,
 };
 
 export default function StarRating({
