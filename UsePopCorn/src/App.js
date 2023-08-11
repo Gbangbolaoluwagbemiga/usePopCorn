@@ -46,9 +46,15 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
+const apiKey = `2834ffac`;
 
 export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
+  const [watched, setWatchMovies] = useState(tempWatchedData);
+
+  fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=jumong `)
+    .then(res => res.json())
+    .then(data => console.log(data));
 
   return (
     <>
@@ -64,8 +70,8 @@ export default function App() {
 
         {/* The list of watched movie */}
         <Box>
-          <WatchedSummary watched={movies} />
-          <WatchedMovie watched={movies} />
+          <WatchedSummary watched={watched} />
+          <WatchedMovie watched={watched} />
         </Box>
       </Main>
     </>
