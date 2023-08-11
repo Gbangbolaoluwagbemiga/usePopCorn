@@ -94,7 +94,7 @@ export default function App() {
   );
 }
 function Loader() {
-  return <div className="loader">LOADER...</div>;
+  return <div className="loader">LOADING...</div>;
 }
 
 function NavBar({children}) {
