@@ -54,7 +54,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const Title = `avatauyr`;
+  const Title = `avatar`;
 
   useEffect(function () {
     setIsLoading(false);
