@@ -52,14 +52,18 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatchMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchResult, setSearchResult] = useState('');
 
   const Title = `avatar`;
+
+  // function handleResult(e) {}
 
   useEffect(function () {
     setIsLoading(false);
     async function fetchMovies() {
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
+        `http://www.omdbapi.com/?apikey=${apiKey}&s=${searchResult} `
+        // `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
       );
       const data = await res.json();
       setMovies(data.Search);
@@ -73,6 +77,7 @@ export default function App() {
     <>
       <NavBar>
         <Result movies={movies} />
+        <Search />
       </NavBar>
 
       <Main>
@@ -101,7 +106,6 @@ function NavBar({children}) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search />
       {children}
     </nav>
   );
