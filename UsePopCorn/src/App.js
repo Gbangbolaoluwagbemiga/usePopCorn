@@ -66,7 +66,7 @@ export default function App() {
         if (!res.ok) throw new Error(`something went wrong`);
 
         const data = await res.json();
-        if (!data.Response) throw new Error(data.Error);
+        if (!data.Response) throw new Error(`No movies found`);
 
         setMovies(data.Search);
       } catch (Err) {
