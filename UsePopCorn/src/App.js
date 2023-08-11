@@ -49,12 +49,12 @@ const tempWatchedData = [
 const apiKey = `2834ffac`;
 
 export default function App() {
-  const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatchMovies] = useState(tempWatchedData);
+  const [movies, setMovies] = useState([]);
+  const [watched, setWatchMovies] = useState([]);
 
-  fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=jumong `)
+  fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=avatar `)
     .then(res => res.json())
-    .then(data => console.log(data));
+    .then(data => setMovies(data.Search));
 
   return (
     <>
