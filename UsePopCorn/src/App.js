@@ -54,7 +54,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const Title = `vfdswwerytb`;
+  const Title = `avatauyr`;
 
   useEffect(function () {
     setIsLoading(false);
@@ -64,9 +64,10 @@ export default function App() {
           `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
         );
         if (!res.ok) throw new Error(`something went wrong`);
+
         const data = await res.json();
-        console.log(data);
-        if (!data.response) throw new Error(data.Error);
+        if (!data.Response) throw new Error(data.Error);
+
         setMovies(data.Search);
       } catch (Err) {
         setError(Err.message);
