@@ -52,18 +52,25 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatchMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState('');
 
   const Title = `avatar`;
 
   useEffect(function () {
     setIsLoading(false);
     async function fetchMovies() {
-      const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
-      );
-      const data = await res.json();
-      setMovies(data.Search);
-      setIsLoading(true);
+      try {
+        const res = await fetch(
+          `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
+        );
+        if (!res.ok) throw new Error(`something went wrong`);
+        const data = await res.json();
+        setMovies(data.Search);
+      } catch (Err) {
+        setError(Err.message);
+      } finally {
+        setIsLoading(true);
+      }
     }
 
     fetchMovies();
@@ -79,13 +86,12 @@ export default function App() {
 
       <Main>
         {/* The list of movie */}
-        {!isLoading ? (
-          <Loader />
-        ) : (
-          <Box>
-            <MovieList movies={movies} />
-          </Box>
-        )}
+        <Box>
+          {/* {!isLoading ? <Loader /> : <MovieList movies={movies} />} */}
+          {!isLoading && <Loader />}
+          {isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
+        </Box>
         {/* The list of watched movie */}
         <Box>
           <WatchedSummary watched={watched} />
@@ -96,7 +102,11 @@ export default function App() {
   );
 }
 function Loader() {
-  return <div className="loader">LOADING...</div>;
+  return <p className="loader">LOADING...</p>;
+}
+
+function ErrorMessage({message}) {
+  return <p className="error">{message}</p>;
 }
 
 function NavBar({children}) {
