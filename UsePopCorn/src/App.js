@@ -51,15 +51,19 @@ const apiKey = `2834ffac`;
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatchMovies] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   const Title = `avatar`;
 
   useEffect(function () {
+    setIsLoading(false);
     async function fetchMovies() {
       const res = await fetch(
         `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
       );
       const data = await res.json();
       setMovies(data.Search);
+      setIsLoading(true);
     }
 
     fetchMovies();
@@ -73,10 +77,13 @@ export default function App() {
 
       <Main>
         {/* The list of movie */}
-        <Box>
-          <MovieList movies={movies} />
-        </Box>
-
+        {!isLoading ? (
+          <Loader />
+        ) : (
+          <Box>
+            <MovieList movies={movies} />
+          </Box>
+        )}
         {/* The list of watched movie */}
         <Box>
           <WatchedSummary watched={watched} />
@@ -85,6 +92,9 @@ export default function App() {
       </Main>
     </>
   );
+}
+function Loader() {
+  return <div className="loader">LOADER...</div>;
 }
 
 function NavBar({children}) {
