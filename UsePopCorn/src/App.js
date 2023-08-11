@@ -51,11 +51,12 @@ const apiKey = `2834ffac`;
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatchMovies] = useState([]);
+  const Title = `avatar`;
 
   useEffect(function () {
     async function fetchMovies() {
       const res = await fetch(
-        `http://www.omdbapi.com/?apikey=${apiKey}&s=avatar `
+        `http://www.omdbapi.com/?apikey=${apiKey}&s=${Title} `
       );
       const data = await res.json();
       setMovies(data.Search);
