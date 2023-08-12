@@ -59,6 +59,9 @@ export default function App() {
   function handleMovieId(id) {
     setSelectedId(id);
   }
+  function handleRemoveId() {
+    setSelectedId('');
+  }
 
   useEffect(
     function () {
@@ -114,7 +117,7 @@ export default function App() {
         {/* The list of watched movie */}
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} />
+            <MovieDetails selectedId={selectedId} onRemoveId={handleRemoveId} />
           ) : (
             <>
               <WatchedSummary watched={watched} />
@@ -180,7 +183,7 @@ function Result({movies}) {
 
 function MovieList({movies, onselected}) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map(movie => (
         <Movie movie={movie} key={movie.imdbID} onselected={onselected} />
       ))}
@@ -216,8 +219,19 @@ function Box({children}) {
     </div>
   );
 }
-function MovieDetails({selectedId}) {
-  return <div className="list">{selectedId}</div>;
+function MovieDetails({selectedId, onRemoveId}) {
+  return (
+    <div className="list">
+      {selectedId}
+      <button
+        style={{display: 'inline'}}
+        className="details"
+        onClick={onRemoveId}
+      >
+        X
+      </button>
+    </div>
+  );
 }
 
 function WatchedSummary({watched}) {
