@@ -54,7 +54,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
-  const Title = `avatar`;
+  const Title = `av543atar`;
 
   useEffect(function () {
     setIsLoading(false);
@@ -66,7 +66,7 @@ export default function App() {
         if (!res.ok) throw new Error(`something went wrong`);
 
         const data = await res.json();
-        if (!data.Response) throw new Error(`No movies found`);
+        if (data.Response === 'False') throw new Error(`No movies found`);
 
         setMovies(data.Search);
       } catch (Err) {
