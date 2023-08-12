@@ -54,6 +54,11 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
+
+  function handleMovieId(id) {
+    setSelectedId(id);
+  }
 
   useEffect(
     function () {
@@ -106,8 +111,14 @@ export default function App() {
         </Box>
         {/* The list of watched movie */}
         <Box>
-          <WatchedSummary watched={watched} />
-          <WatchedMovie watched={watched} />
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} />
+              <WatchedMovie watched={watched} />
+            </>
+          )}{' '}
         </Box>
       </Main>
     </>
@@ -177,7 +188,7 @@ function MovieList({movies}) {
 
 function Movie({movie}) {
   return (
-    <li>
+    <li onClick={()=}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
@@ -202,6 +213,9 @@ function Box({children}) {
       {isOpen && children}
     </div>
   );
+}
+function MovieDetails({selectedId}) {
+  return <div className="list">{selectedId}</div>;
 }
 
 function WatchedSummary({watched}) {
