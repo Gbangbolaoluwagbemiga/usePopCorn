@@ -106,7 +106,9 @@ export default function App() {
         <Box>
           {/* {!isLoading ? <Loader /> : <MovieList movies={movies} />} */}
           {!isLoading && <Loader />}
-          {isLoading && !error && <MovieList movies={movies} />}
+          {isLoading && !error && (
+            <MovieList movies={movies} onselected={handleMovieId} />
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
         {/* The list of watched movie */}
@@ -176,19 +178,19 @@ function Result({movies}) {
 
 // Main Component started
 
-function MovieList({movies}) {
+function MovieList({movies, onselected}) {
   return (
     <ul className="list">
       {movies?.map(movie => (
-        <Movie movie={movie} key={movie.imdbID} />
+        <Movie movie={movie} key={movie.imdbID} onselected={onselected} />
       ))}
     </ul>
   );
 }
 
-function Movie({movie}) {
+function Movie({movie, onselected}) {
   return (
-    <li onClick={()=}>
+    <li onClick={() => onselected(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
