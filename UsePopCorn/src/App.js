@@ -103,7 +103,6 @@ export default function App() {
         <Search query={query} setQuery={setQuery} />
         <Result movies={movies} />
       </NavBar>
-      {console.log(NavBar)}
       <Main>
         {/* The list of movie */}
         <Box>
